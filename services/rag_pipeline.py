@@ -158,7 +158,7 @@ Context:
 
         llm,
 
-        prommpt)
+        prompt)
 
     rag_chain = create_retrieval_chain(
 
