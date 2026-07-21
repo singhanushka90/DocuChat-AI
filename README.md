@@ -68,7 +68,7 @@ pdf_chat_ai/
 Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/pdf_chat_ai.git
+git clone https://github.com/singhanushka90/pdf_chat_ai.git
 ```
 
 Go inside the folder
