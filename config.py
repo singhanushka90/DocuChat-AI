@@ -6,7 +6,7 @@ load_dotenv()
 MONGODB_URI=os.getenv("MONGODB_URI")
 PINECONE_API_KEY=os.getenv("PINECONE_API_KEY")
 PINECONE_INDEX=os.getenv("PINECONE_INDEX")
-GROQ_API_KEY=os.getenv("GROQ_PAI_KEY")
+GROQ_API_KEY=os.getenv("GROQ_API_KEY")
 
 
 SECRET_KEY=os.getenv("SECRET_KEY")

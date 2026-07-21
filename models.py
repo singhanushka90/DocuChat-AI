@@ -16,4 +16,4 @@ class LoginRequest(BaseModel):
 
 class TokenResponse(BaseModel):
     access_token:str
-    tiken_type:str="bearer"
+    token_type:str="bearer"

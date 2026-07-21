@@ -26,9 +26,9 @@ embedding = HuggingFaceEmbeddings(
 
 llm = ChatGroq(model_name="llama-3.1-8b-instant")
 
-pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+pc = Pinecone(api_key=PINECONE_API_KEY)
 
-index = pc.Index(os.getenv("PINECONE_INDEX"))
+index = pc.Index(PINECONE_INDEX)
 
 vectorstore = PineconeVectorStore(
     index=index,
@@ -63,7 +63,7 @@ def get_session(session_id:str):
     collection_name="chat_history")
 
 
-def setup_rag_pipeline(docs):
+def setup_rag_pipeline(docs,user_id):
 
     global chatbot
     parent_retriever.add_documents(docs)
@@ -94,9 +94,7 @@ def setup_rag_pipeline(docs):
 
     print("Multi Query Ready")
     history_prompt = ChatPromptTemplate.from_messages([
-
-        (
-           ("system","""
+        ("system","""
 Given the previous conversation and the latest user question,
 rewrite the latest question into a standalone question.
 
@@ -106,10 +104,8 @@ replace it using the conversation history.
 
 Do NOT answer the question.
 Only return the rewritten question.
-""")
-        ),
-
-        MessagesPlaceholder("chat_history"),
+"""),
+MessagesPlaceholder("chat_history"),
 
         (
             "human",
@@ -132,7 +128,7 @@ Only return the rewritten question.
             """You are an AI Assistant specialized in answering questions from uploaded documents.
             Instructions:
             1. Answer ONLY from the provided context.
-            2. If the answer is not available in the context, reply "I don'y know based on the uploaded documents".
+            2. If the answer is not available in the context, reply "I don't know based on the uploaded documents".
             3. Do not make up facts and hallucinate.
             4. Keep the answer accurate, clear, and well-structured.
             5. If appropriate, explain complex concepts in simple language.

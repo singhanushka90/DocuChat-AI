@@ -5,7 +5,7 @@ from config import JWT_ALGORITHM,SECRET_KEY,ACCESS_TOKEN_EXPIRE_MINUTES
 def create_access_token(data:dict,expires_delta:timedelta|None=None):
     to_encode=data.copy()
     if expires_delta:
-        expire=datetime,now(timezone.utc)+expires_delta
+        expire=datetime.now(timezone.utc)+expires_delta
     else:
         expire=datetime.now(timezone.utc)+timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
 
